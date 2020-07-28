@@ -8,6 +8,9 @@ function Menu() {
             <a href="/">
                 <img className="Logo" src={Logo} alt="Engineering Videos Logo" />
             </a>
+            <a className="ButtonLink" href="/">
+                Novo vídeo
+            </a>
         </nav>
     );
 }
