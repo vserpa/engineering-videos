@@ -1,9 +1,13 @@
 import React from 'react';
+import Logo from '../../assets/images/logo_120.png';
+import './Menu.css';
 
 function Menu() {
     return (
-        <nav>
-            Enginnering Videos
+        <nav className="Menu">
+            <a href="/">
+                <img className="Logo" src={Logo} alt="Engineering Videos Logo" />
+            </a>
         </nav>
     );
 }
