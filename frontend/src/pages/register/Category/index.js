@@ -33,26 +33,8 @@ function RegisterCategory() {
             <h1>Register Category: {values.name}</h1>
             <form style={{ background: values.color }} onSubmit={handleSubmit}>
                 <FormField label="Name" type="text" attr="name" value={values.name} onChange={setValue} />
-                <div>
-                    <label>
-                        Description:
-                        <textarea 
-                            type="text"
-                            name="description" 
-                            value={values.description} 
-                            onChange={setValue} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Color:
-                        <input 
-                            type="color" 
-                            name="color"
-                            value={values.color} 
-                            onChange={setValue} />
-                    </label>
-                </div>
+                <FormField label="Description" type="textarea" attr="description" value={values.description} onChange={setValue} />
+                <FormField label="Color" type="color" attr="color" value={values.color} onChange={setValue} />
                 <button>
                     Register
                 </button>
