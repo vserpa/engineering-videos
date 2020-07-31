@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageDefault from '../../../templates/PageDefault'
+import PageDefault from '../../../templates/PageDefault';
+import FormField from '../../../components/FormField';
 
 function RegisterCategory() {
 
-    const value = {
+    const initialValue = {
         name: '',
         description: '',
         color: '#000000'
     }
 
-    const [values, setValues] = useState(value);
+    const [values, setValues] = useState(initialValue);
     const [categories, setCategories] = useState([]);
 
 
@@ -21,23 +22,18 @@ function RegisterCategory() {
         })
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        setCategories([...categories, values]);
+        setValues(initialValue);
+    }
+
     return (
         <PageDefault>
             <h1>Register Category: {values.name}</h1>
-            <form style={{ background: values.color }} onSubmit={function handleSubmit(e) {
-                e.preventDefault();
-                setCategories([...categories, values]);
-                setValues(value);
-            }}>
+            <form style={{ background: values.color }} onSubmit={handleSubmit}>
+                <FormField label="Name" type="text" attr="name" value={values.name} onChange={setValue} />
                 <div>
-                    <label>
-                        Name:
-                        <input 
-                            type="text" 
-                            name="name"
-                            value={values.name} 
-                            onChange={setValue} />
-                    </label>
                     <label>
                         Description:
                         <textarea 
@@ -46,6 +42,8 @@ function RegisterCategory() {
                             value={values.description} 
                             onChange={setValue} />
                     </label>
+                </div>
+                <div>
                     <label>
                         Color:
                         <input 
