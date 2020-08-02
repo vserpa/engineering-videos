@@ -28,8 +28,10 @@ function RegisterCategory() {
     }
 
     useEffect(() => {
-        const url = 'http://localhost:8080/categories';
-        fetch(url)
+        const URL = window.location.hostname.includes('localhost')
+        ? 'http://localhost:8080/categories'
+        : 'https://engineering-videos.herokuapp.com/categories';
+        fetch(URL)
             .then(async (response) => {
                 const responseJson = await response.json();
                 setCategories([...responseJson]);
