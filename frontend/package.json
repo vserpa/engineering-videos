@@ -17,8 +17,8 @@
   },
   "scripts": {
     "dev": "concurrently \"react-scripts start\" \"yarn backend-server\"",
-    "backend-server": "json-server --watch db.json --port 8080",
-    "start": "react-scripts start",
+    "backend-server": "node ./server.js",
+    "start": "npm run backend-server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
