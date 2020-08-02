@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../templates/PageDefault';
 import FormField from '../../../components/FormField';
@@ -27,6 +27,17 @@ function RegisterCategory() {
         setValues(initialValue);
     }
 
+    useEffect(() => {
+        const url = 'http://localhost:8080/categories';
+        fetch(url)
+            .then(async (response) => {
+                const responseJson = await response.json();
+                setCategories([...responseJson]);
+            });
+    }, [
+        values.name
+    ]);
+
     return (
         <PageDefault>
             <h1>Register Category: {values.name}</h1>
@@ -38,6 +49,12 @@ function RegisterCategory() {
                     Register
                 </button>
             </form>
+
+            {categories.length === 0 && (
+                <div>
+                    Loading...
+                </div>
+            )}
 
             <ul>
                 {categories.map((category, index) => {
