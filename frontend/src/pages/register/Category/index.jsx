@@ -4,7 +4,6 @@ import PageDefault from '../../../templates/PageDefault';
 import FormField from '../../../components/FormField';
 
 function RegisterCategory() {
-
     const initialValue = {
         name: '',
         description: '',
@@ -31,7 +30,7 @@ function RegisterCategory() {
     return (
         <PageDefault>
             <h1>Register Category: {values.name}</h1>
-            <form style={{ background: values.color }} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormField label="Name" type="text" attr="name" value={values.name} onChange={setValue} />
                 <FormField label="Description" type="textarea" attr="description" value={values.description} onChange={setValue} />
                 <FormField label="Color" type="color" attr="color" value={values.color} onChange={setValue} />
