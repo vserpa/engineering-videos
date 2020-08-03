@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../templates/PageDefault';
 import FormField from '../../../components/FormField';
+import useForm from '../../../hooks/useForm';
 
 function RegisterCategory() {
     const initialValue = {
@@ -9,22 +10,14 @@ function RegisterCategory() {
         description: '',
         color: '#000000'
     }
-
-    const [values, setValues] = useState(initialValue);
+    
+    const { handleChange, clearForm, values } = useForm(initialValue);
     const [categories, setCategories] = useState([]);
-
-
-    function setValue(e) {
-        setValues({
-            ...values,
-            [e.target.getAttribute('name')]: e.target.value
-        })
-    }
-
+    
     function handleSubmit(e) {
         e.preventDefault();
         setCategories([...categories, values]);
-        setValues(initialValue);
+        clearForm();
     }
 
     useEffect(() => {
@@ -36,17 +29,15 @@ function RegisterCategory() {
                 const responseJson = await response.json();
                 setCategories([...responseJson]);
             });
-    }, [
-        values.name
-    ]);
+    }, []);
 
     return (
         <PageDefault>
             <h1>Register Category: {values.name}</h1>
             <form onSubmit={handleSubmit}>
-                <FormField label="Name" type="text" attr="name" value={values.name} onChange={setValue} />
-                <FormField label="Description" type="textarea" attr="description" value={values.description} onChange={setValue} />
-                <FormField label="Color" type="color" attr="color" value={values.color} onChange={setValue} />
+                <FormField label="Name" type="text" attr="name" value={values.name} onChange={handleChange} />
+                <FormField label="Description" type="textarea" attr="description" value={values.description} onChange={handleChange} />
+                <FormField label="Color" type="color" attr="color" value={values.color} onChange={handleChange} />
                 <button>
                     Register
                 </button>
