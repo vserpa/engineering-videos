@@ -11,26 +11,26 @@ function Home() {
       <Menu />
 
       <BannerMain
-        videoTitle={data.categorias[0].videos[0].titulo}
-        url={data.categorias[0].videos[0].url}
+        videoTitle={data.categories[0].videos[0].name}
+        url={data.categories[0].videos[0].url}
         videoDescription={"Software Engineering"}
       />
 
       <Carousel
         ignoreFirstVideo
-        category={data.categorias[0]}
+        category={data.categories[0]}
       />
 
       <Carousel
-        category={data.categorias[1]}
+        category={data.categories[1]}
       />
 
       <Carousel
-        category={data.categorias[2]}
+        category={data.categories[2]}
       />
 
       <Carousel
-        category={data.categorias[3]}
+        category={data.categories[3]}
       />
 
       <Footer></Footer>
