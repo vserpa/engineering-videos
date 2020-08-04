@@ -1,50 +1,53 @@
-import React, { useEffect } from 'react';
-import Menu from '../../components/Menu';
+import React, { useEffect, useState } from 'react';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
-import Footer from '../../components/Footer';
-import data from '../../data/initial_data.json';
+import PageDefault from '../../templates/PageDefault';
 import categoriesRepository from '../../repositories/categories';
 
 function Home() {
 
+  const [initialData, setInitialData] = useState([]);
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await categoriesRepository.getAllWithVideos();
-      console.log(response);
-    }
-    fetchData();
-}, []);
+    categoriesRepository.getAllWithVideos()
+      .then((categoriesWithVideos) => {
+        setInitialData(categoriesWithVideos);
+      })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  }, []);
 
   return (
-    <div style={{ background: "#141414" }}>
-      <Menu />
+    <PageDefault paddingAll={0}>
+      {initialData.length === 0 && (<div>Loading...</div>)}
 
-      <BannerMain
-        videoTitle={data.categories[0].videos[0].name}
-        url={data.categories[0].videos[0].url}
-        videoDescription={"Software Engineering"}
-      />
+      {initialData.map((category, index) => {
+        if (index === 0) {
+          return (
+            <div key={category.id}>
+              <BannerMain
+                videoTitle={initialData[0].videos[0].name}
+                url={initialData[0].videos[0].url}
+                videoDescription={"Software Engineering"}
+              />
+              <Carousel
+                ignoreFirstVideo
+                category={initialData[0]}
+              />
+            </div>
+          )
+        }
 
-      <Carousel
-        ignoreFirstVideo
-        category={data.categories[0]}
-      />
+        return (
+          <Carousel
+            key={category.id}
+            category={category}
+          />
+        );
+      })}
 
-      <Carousel
-        category={data.categories[1]}
-      />
-
-      <Carousel
-        category={data.categories[2]}
-      />
-
-      <Carousel
-        category={data.categories[3]}
-      />
-
-      <Footer></Footer>
-    </div>
+    </PageDefault>
   );
 }
 
