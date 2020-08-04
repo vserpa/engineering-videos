@@ -1,6 +1,7 @@
 {
   "categories": [
     {
+      "id": 1,
       "name": "Front End",
       "link": "https://www.alura.com.br/formacao-front-end",
       "color": "#6BD1FF",
@@ -44,6 +45,7 @@
       ]
     },
     {
+      "id": 2,
       "name": "Back End",
       "color": "#00C86F",
       "link_extra": {
@@ -74,6 +76,7 @@
       ]
     },
     {
+      "id": 3,
       "name": "Data Science e Inteligência Artificial",
       "color": "#9cd33b",
       "link_extra": {
@@ -100,6 +103,7 @@
       ]
     },
     {
+      "id": 4,
       "name": "Filmes",
       "color": "orange",
       "videos": [
@@ -122,6 +126,7 @@
       ]
     },
     {
+      "id": 5,
       "name": "Games",
       "color": "red",
       "link_extra": {
@@ -152,6 +157,7 @@
       ]
     },
     {
+      "id": 6,
       "name": "Aprendendo a aprender tecnologia",
       "color": "#6b5be2",
       "link_extra": {

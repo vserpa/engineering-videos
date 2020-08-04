@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Menu from '../../components/Menu';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import Footer from '../../components/Footer';
 import data from '../../data/initial_data.json';
+import categoriesRepository from '../../repositories/categories';
 
 function Home() {
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await categoriesRepository.getAllWithVideos();
+      console.log(response);
+    }
+    fetchData();
+}, []);
+
   return (
     <div style={{ background: "#141414" }}>
       <Menu />
